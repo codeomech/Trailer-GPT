@@ -17,4 +17,4 @@ we have a play button
 - movie lists (vertically scrollable)
 - netfilx Gpt
  - searchBar
- - movie Recommendation
+ - tailored movie Recommendation 
