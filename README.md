@@ -6,7 +6,7 @@ first of all we started with by creating a bolierpalte code with npx-create-reac
 then we configure tailwind CSS as we're using Tailwind.
 
 #features for the project 
-SignIn/login page 
+SignIn/login page How to use a same form as Sign Up or Sign In , Form validators, useref hook
 Browse Page(after authentiaction login)
 we have a header
 main movie conatiner
