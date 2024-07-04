@@ -5,10 +5,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import { checkValidData } from '../utils/validate';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
 import {auth} from '../utils/firebase'
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
   const email= useRef(null);
   const password = useRef(null);
@@ -42,6 +44,7 @@ const Login = () => {
             .then((userCredential) => {
               // Signed in 
               const user = userCredential.user;
+              navigate("/browse")
               console.log(user);
               // ...
             })
