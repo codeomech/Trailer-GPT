@@ -15,9 +15,9 @@ function Header() {
 
   
   useEffect(()=>{
-    onAuthStateChanged(auth, (user) => {
+    const unSubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        const {uid,email,displayName} = user.uid;
+        const {uid,email,displayName} = user;
         dispatch(addUser({uid:uid, email: email, displayName: displayName}))
         navigate("/browse");
 
@@ -26,6 +26,9 @@ function Header() {
        navigate("/")
       }
     });
+
+    // Unsubscribe when component unMounts 
+    return () => unSubscribe();
   },[])
 
  const handleSignout = ()=>{
@@ -35,12 +38,12 @@ function Header() {
     });
   }
   return (
-    <div className='absolute w-screen top-0 left-0 z-40 p-4 flex justify-between items-center'>
+    <div className='absolute w-screen top-0 left-0 z-40  flex justify-between items-center'>
       <a href="/">
         <img className='w-44' src="https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png" alt='logo' />
       </a>
       {user && (
-        <img className='w-8 h-10 cursor-pointer' onClick={handleSignout} src={avatar} alt='avatar' />
+        <img className='w-8 h-10 mr-3.5 cursor-pointer' onClick={handleSignout} src={avatar} alt='avatar' />
       )}
     </div>
   );

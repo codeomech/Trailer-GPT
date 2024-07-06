@@ -6,7 +6,10 @@ first of all we started with by creating a bolierpalte code with npx-create-reac
 then we configure tailwind CSS as we're using Tailwind.
 
 #features for the project 
-SignIn/login page How to use a same form as Sign Up or Sign In , Form validators, useref hook
+SignIn/login page How to use a same form as Sign Up or Sign In , Form validators, useref hook 
+- created a redux store with userSlice
+- As soon as my user signIn I want to update that user profile
+- logOut
 Browse Page(after authentiaction login)
 we have a header
 main movie conatiner
@@ -17,4 +20,10 @@ we have a play button
 - movie lists (vertically scrollable)
 - netfilx Gpt
  - searchBar
- - tailored movie Recommendation 
+ - tailored movie Recommendation
+
+ React make two API calls coz there is one thing called ReactStrictMode which checks the application twice in local only SO it's good thing , React is checking if there is inconsistency if we remove that from index.js only one API call would be there .
+
+- Registerd TMDB app and used API from there
+- Get the latest movies from TMDB
+
