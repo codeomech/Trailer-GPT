@@ -14,5 +14,4 @@ export const userAvatar = "https://netflix-bootcamp-db.netlify.app/static/media/
 
 export const cardImgURL = "https://image.tmdb.org/t/p/w780/";
 
-export const OPEN_AI_KEY = "sk-proj-ZGQDwfKMYIZNNrVDx2ilT3BlbkFJMwicNAR4yYnx4mtA9OOU" ;
 console.log(import.meta.env);
