@@ -12,14 +12,13 @@ const VideoBackground = ({ movieId }) => {
   };
 
   return (
-    <div>
+    <div className='md:w-full md:aspect-video relative md:-top-24'>
       <iframe
         className='w-screen aspect-video'
-        src={`https://www.youtube-nocookie.com/embed/${trailerVideo?.key}?autoplay=1&mute=${isMuted ? 1 : 0}&modestbranding=1&showinfo=0&controls=0&disablekb=1&rel=0`}
+        src={`https://www.youtube-nocookie.com/embed/${trailerVideo?.key}?autoplay=1&mute=${isMuted ? 1 : 0}&loop=1`}
         title="YouTube video player"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media;"
       ></iframe>
-      <button className='mx-2 bg-gray-500 text-white text-xl bg-opacity-50 rounded-lg z-60' onClick={() => handleMuteToggle()}>Unmute</button>
     </div>
   );
 };
