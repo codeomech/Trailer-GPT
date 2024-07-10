@@ -9,8 +9,7 @@ const MovieList = ({title,movies}) => {
                 {movies && movies.map((movie,index)=>  <MovieCard key={index} posterPath={movie.poster_path}/>)}
 
             </div>
-        </div>
-      
+        </div> 
     </div>
   )
 }

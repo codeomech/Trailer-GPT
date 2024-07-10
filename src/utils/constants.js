@@ -14,4 +14,6 @@ export const userAvatar = "https://netflix-bootcamp-db.netlify.app/static/media/
 
 export const cardImgURL = "https://image.tmdb.org/t/p/w780/";
 
-console.log(import.meta.env);
+export const OPENAIKEY = process.env.REACT_APP_OPEN_AI_KEY
+
+export const GEMINIKEY = "AIzaSyBdv1WdPqOwJUmGoE1QHh8zOFBnY5LIYXw"
