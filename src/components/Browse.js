@@ -17,7 +17,7 @@ const Browse = () => {
   useTopRated();
   useSeriesTrending();
   return (
-    <div>
+    <div className='overflow-x-hidden'>
       <Header></Header>
       {
         showGptSearch? (<GptSearch></GptSearch>) :(
@@ -27,17 +27,6 @@ const Browse = () => {
           </>
         )
       }
-      
-      
-      {/*
-      Main Container
-      - trailer
-      - video title
-      Secondary Container
-      - movie list 
-      - card
-      */}
-      
       </div>
   )
 }

@@ -1,11 +1,6 @@
-import OpenAI from 'openai';
-// import OpenAI from 'https://deno.land/x/openai@v4.24.7/mod.ts';
-import { OPENAIKEY} from './constants';
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import { GEMINIKEY } from "./config";
 
-const openai = new OpenAI({
-  apiKey: OPENAIKEY,
-  dangerouslyAllowBrowser: true
-  // This is the default and can be omitted
-});
+const genAI = new GoogleGenerativeAI(GEMINIKEY);
 
-export default openai;
+export default genAI;

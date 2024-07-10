@@ -2,11 +2,15 @@ import { useRef } from "react";
 import { API_OPTIONS } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { addGptMovies } from "../utils/gptSlice";
-import openai from "../utils/openAI";
+import genAI from "../utils/openAI";
+import { langConst } from "../utils/langConstant";
+import { useLanguage } from "./LanguageContext";
 
 const GptSearchBar = () => {
   const searchText = useRef(null);
   const dispatch = useDispatch();
+  const { langKey} = useLanguage();
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
 
   // TMDB movie search api
   const searchTMDBMovie = async(movie)=>{
@@ -14,7 +18,6 @@ const GptSearchBar = () => {
     const json = await data.json();
     return json.results;
   }
-
 
   const handleGPTSearchClick = async () => {
    
@@ -24,19 +27,18 @@ const GptSearchBar = () => {
       searchText.current.value +
       "only give me name of five movies ,comma separated like the example result given ahead.Example result: Gadar 2, Don , Jawan, Hi nanna,The batman";
 
-    const gptResults = await openai.chat.completions.create({
-      messages: [{ role: "user", content: gptquery }],
-      model: "gpt-3.5-turbo",
-    });
+    const gptResults = await model.generateContent(gptquery);
+    const response = await gptResults.response;
+    const text = response.text();
 
-    if (!gptResults.choices)
+    if (!text)
       return (
         <div className="w-1/2 bg-slate-900 text-white text-2xl p-4">
-          Hey peep, looks like the Open AI api limit is exceeded
+          Hey peep, looks like the Gemini AI api limit is exceeded try after some time
         </div>
       );
     
-    const gptMovies = gptResults.choices?.[0]?.message.content.split(",");
+    const gptMovies = text.split(",");
 
 
     const promiseArray =  gptMovies.map((movie)=>searchTMDBMovie(movie));
@@ -57,13 +59,13 @@ const GptSearchBar = () => {
           ref={searchText}
           className="col-span-9 p-2 md:m-4 m-2"
           type="text"
-          placeholder="What do you want to Search"
+          placeholder= {langConst[langKey].placeholder}
         />
         <button
           className="col-span-3 md:py-2 md:px-4 px-2 bg-red-700 md:m-4 m-2 text-white rounded-lg"
           onClick={handleGPTSearchClick}
         >
-          Search
+          {langConst[langKey].search}
         </button>
       </form>
     </div>
