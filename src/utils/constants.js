@@ -13,7 +13,3 @@ export const bgImg = "https://assets.nflxext.com/ffe/siteui/vlv3/594f8025-139a-4
 export const userAvatar = "https://netflix-bootcamp-db.netlify.app/static/media/profileIcon1.b36331ae.jpg";
 
 export const cardImgURL = "https://image.tmdb.org/t/p/w780/";
-
-export const OPENAIKEY = process.env.REACT_APP_OPEN_AI_KEY
-
-export const GEMINIKEY = "AIzaSyBdv1WdPqOwJUmGoE1QHh8zOFBnY5LIYXw"
