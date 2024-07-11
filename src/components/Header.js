@@ -70,10 +70,15 @@ const Header = () => {
   const toggleSound= () =>{
     dispatch(toggleMute());
   }
+
+  const handleLogoClick = () => {
+    navigate('/browse');
+  };
+
   const gpt = useSelector((store) => store.gpt.showGptSearch);
   return (
     <div className="md:w-full w-screen absolute md:px-10 px-5 py-5 bg-gradient-to-b from-black z-20 flex justify-between">
-      <img className="md:w-44 w-28 cursor-pointer" src={mainLogo} alt="logo" />
+      <img className="md:w-44 w-28 cursor-pointer" src={mainLogo} onClick={handleLogoClick} alt="logo" />
       {user && (
         <div className="flex items-center">
 

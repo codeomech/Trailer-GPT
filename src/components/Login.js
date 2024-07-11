@@ -24,7 +24,6 @@ const Login = () => {
         toast.error(error);
       });
     } else {
-      console.log('Form is valid');
     //   create a new user or Sign in
          if(!isSignInForm){
             createUserWithEmailAndPassword(auth,email.current.value, password.current.value)
@@ -45,7 +44,6 @@ const Login = () => {
               // Signed in 
               const user = userCredential.user;
               navigate("/browse")
-              console.log(user);
               // ...
             })
             .catch((error) => {

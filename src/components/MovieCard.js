@@ -1,11 +1,25 @@
+import { useDispatch } from "react-redux";
 import { cardImgURL } from "../utils/constants"
+import { useNavigate } from "react-router-dom";
+import { addTrailerId } from "../utils/gptSlice";
 
 
-const MovieCard = ({posterPath}) => {
+const MovieCard = ({posterPath, id}) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
+
+
+  const handlePosterClick =()=>{
+    dispatch(addTrailerId(id));
+    setTimeout(() => {
+      navigate("/watch");
+    }, 500);
+  }
+  
   if(!posterPath) return null;
   return (
     <div className="md:w-56 w-28 mx-2 hover:scale-95 transition-all duration-100">
-        <img src={cardImgURL+posterPath} className="w-full h-full object-cover rounded-lg cursor-pointer"  alt="card-img" />
+        <img onClick={handlePosterClick} src={cardImgURL+posterPath} className="w-full h-full object-cover rounded-lg cursor-pointer"  alt="card-img" />
     </div>
   )
 }

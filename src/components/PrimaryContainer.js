@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux'
 import VideoBackground from './VideoBackground'
 import VideoTitle from './VideoTitle'
 
-const MainContainer = () => {
+const PrimaryContainer = () => {
     const movies = useSelector((state) => state.movies?.nowPlayingMovies)
     if(!movies) return;
 
@@ -11,10 +11,10 @@ const MainContainer = () => {
     const {original_title, overview,id} = mainMovie;
     return (
       <div className="w-screen md:h-screen overflow-y-hidden">
-        <VideoTitle title={original_title} overview={overview}/>
+        <VideoTitle title={original_title} overview={overview} id={id} />
         <VideoBackground movieId={id}/>
       </div>
     )
 }
 
-export default MainContainer;
+export default PrimaryContainer;

@@ -1,7 +1,6 @@
 import { bgImg } from "../utils/constants"
 import GptSearchBar from "./GptSearchBar"
 import GptMovieSuggestion from "./GptMovieSuggestion"
-// import GptMovieSuggestion from "./GptMovieSuggestion"
 
 
 const GptSearch = () => {
