@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { cardImgURL } from "../utils/constants"
 import { useNavigate } from "react-router-dom";
-import { addTrailerId } from "../utils/gptSlice";
+import { addTrailerId, setLoading } from "../utils/gptSlice";
 
 
 const MovieCard = ({posterPath, id}) => {
@@ -11,9 +11,8 @@ const MovieCard = ({posterPath, id}) => {
 
   const handlePosterClick =()=>{
     dispatch(addTrailerId(id));
-    setTimeout(() => {
-      navigate("/watch");
-    }, 500);
+    dispatch(setLoading(true));
+    navigate("/watch");
   }
   
   if(!posterPath) return null;

@@ -10,7 +10,7 @@ import { toggleGptSearchView } from "../utils/gptSlice";
 // drop down
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
-import { ChevronDownIcon,LanguageIcon, SpeakerWaveIcon,SpeakerXMarkIcon} from "@heroicons/react/20/solid";
+import { ChevronDownIcon,LanguageIcon, SpeakerWaveIcon,SpeakerXMarkIcon,MagnifyingGlassIcon, HomeIcon} from "@heroicons/react/20/solid";
 import { useLanguage } from "./LanguageContext";
 import { toggleMute } from "../utils/audioSlice";
 
@@ -81,21 +81,30 @@ const Header = () => {
       <img className="md:w-44 w-28 cursor-pointer" src={mainLogo} onClick={handleLogoClick} alt="logo" />
       {user && (
         <div className="flex items-center">
+<div className="flex space-x-4 mr-5">
+  { !gpt ? (
+    <button onClick={handleGptSearchClick}>
+    <MagnifyingGlassIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+  </button>): (
+    <button onClick={handleGptSearchClick}>
+    <HomeIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+  </button>)
+ }
 
-{!gpt ? <button onClick={toggleSound}>
+  {!gpt && (
+    <button onClick={toggleSound}>
       {isMuted ? (
-        <SpeakerXMarkIcon className="-ml-20 h-5 w-5 text-gray-400" aria-hidden="true" />
+        <SpeakerXMarkIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
       ) : (
-        <SpeakerWaveIcon className="-ml-20 h-5 w-5 text-gray-400" aria-hidden="true" />
+        <SpeakerWaveIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
       )}
-    </button> : ""}
-        
-          <button onClick={toggleLanguage}>
-          <LanguageIcon
-                  className="-ml-9 h-5 w-5 text-gray-400"
-                  aria-hidden="true"
-                />
-                </button>
+    </button>
+  )}
+
+  <button onClick={toggleLanguage}>
+    <LanguageIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+  </button>
+</div>
 
           <img
             src={

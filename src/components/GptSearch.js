@@ -1,9 +1,14 @@
 import { bgImg } from "../utils/constants"
 import GptSearchBar from "./GptSearchBar"
 import GptMovieSuggestion from "./GptMovieSuggestion"
+import { useSelector } from "react-redux"
+import Loaders from "./Trailer/Loaders"
 
 
 const GptSearch = () => {
+
+  const loading = useSelector((store) => store.gpt.loading);
+
   return (
     <div>
       <div className="fixed -z-20 ">
@@ -15,7 +20,11 @@ const GptSearch = () => {
       </div>
       <div className="absolute  md:w-full md:h-screen bg-black drop-shadow-lg opacity-30 backdrop-blur-2xl -z-10"></div>
       <GptSearchBar/>
+      {loading ? (
+        <Loaders />
+      ): 
       <GptMovieSuggestion/>
+    }
     </div>
   )
 }
