@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { API_OPTIONS } from "../utils/constants";
 import { useDispatch } from "react-redux";
-import { addGptMovies } from "../utils/gptSlice";
+import { addGptMovies, setLoading } from "../utils/gptSlice";
 import genAI from "../utils/openAI";
 import { langConst } from "../utils/langConstant";
 import { useLanguage } from "./LanguageContext";
@@ -21,11 +21,11 @@ const GptSearchBar = () => {
 
   const handleGPTSearchClick = async () => {
    
-
+    dispatch(setLoading(true));
     const gptquery =
-      "Act as a movie recommendation system and suggest some movies for the query" +
-      searchText.current.value +
-      "only give me name of five movies ,comma separated like the example result given ahead.Example result: Gadar 2, Don , Jawan, Hi nanna,The batman";
+      "Act as a movie recommendation system and suggest some movies for the query Find five films based on" +
+      searchText.current.value + ".List only the film names, separated by commas. Provide exactly five names and nothing else"
+;
 
     const gptResults = await model.generateContent(gptquery);
     const response = await gptResults.response;
@@ -46,7 +46,7 @@ const GptSearchBar = () => {
     const tmdbResults = await Promise.all(promiseArray);
     
     dispatch(addGptMovies({movieNames:gptMovies,movieResults:tmdbResults}));
-    
+    dispatch(setLoading(false));
   };
 
   return (
