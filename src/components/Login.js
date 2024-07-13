@@ -72,7 +72,7 @@ const Login = () => {
           alt="bg-image"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-gray-900 to-transparent opacity-50 z-30"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-8 bg-black bg-opacity-75 rounded z-40">
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-8 bg-black bg-opacity-75 rounded z-40 phone:w-full lg:w-1/5">
           <form className="space-y-4">
             <h1 className="font-bold text-3xl py-2 text-white">{isSignInForm ? "Sign In" : "Sign Up"}</h1>
             <input

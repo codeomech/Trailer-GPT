@@ -1,7 +1,7 @@
 import React from "react";
 import useTrailer from "../../hooks/useTrailer";
 import { useSelector } from "react-redux";
-import Header from "../Header";
+import TrailerHeader from "./TrailerHeader";
 import Loaders from "./Loaders";
 
 const WatchTrailer = () => {
@@ -12,7 +12,7 @@ const WatchTrailer = () => {
   
   return (
     <div className="relative h-screen w-screen">
-      <Header className="relative z-10" />
+      <TrailerHeader className="relative z-10" />
       {loading ? (
         <Loaders />
       ) : trailerVideo ? (

@@ -8,7 +8,7 @@ const SecondaryContainer = () => {
   const { langKey} = useLanguage();
   return (
   movies.nowPlayingMovies&&(
-    <div className="absolute w-[100%] bg-black md:bg-opacity-100  scrollbar-hide z-30 ">
+    <div className="absolute w-[100%] bg-black md:bg-opacity-100  scrollbar-hide z-30 hide-scrollbar">
       <div>
         
       <MovieList title={langConst[langKey].nowPlaying} movies={movies?.nowPlayingMovies} />

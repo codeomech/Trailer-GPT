@@ -25,14 +25,11 @@ const Header = () => {
   const { toggleLanguage } = useLanguage();
 
 
-  const handleToggle = () => {
+const handleToggle = () => {
     signOut(auth)
       .then(() => {
-        // Sign-out successful.
       })
       .catch((error) => {
-        // An error happened.
-
         navigate("/error");
       });
   };
@@ -51,7 +48,6 @@ const Header = () => {
           })
         );
       } else {
-        //
         dispatch(removeUser());
         navigate("/");
       }
@@ -84,25 +80,25 @@ const Header = () => {
 <div className="flex space-x-4 mr-5">
   { !gpt ? (
     <button onClick={handleGptSearchClick}>
-    <MagnifyingGlassIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+    <MagnifyingGlassIcon className="h-5 w-5 text-gray-400 hover:text-red-600" aria-hidden="true" />
   </button>): (
     <button onClick={handleGptSearchClick}>
-    <HomeIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+    <HomeIcon className="h-5 w-5 text-gray-400 hover:text-red-600" aria-hidden="true" />
   </button>)
  }
 
   {!gpt && (
     <button onClick={toggleSound}>
       {isMuted ? (
-        <SpeakerXMarkIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+        <SpeakerXMarkIcon className="h-5 w-5 text-gray-400 hover:text-red-600" aria-hidden="true" />
       ) : (
-        <SpeakerWaveIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+        <SpeakerWaveIcon className="h-5 w-5 text-gray-400 hover:text-red-600" aria-hidden="true" />
       )}
     </button>
   )}
 
   <button onClick={toggleLanguage}>
-    <LanguageIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+    <LanguageIcon className="h-5 w-5 text-gray-400 hover:text-red-600" aria-hidden="true" />
   </button>
 </div>
 
