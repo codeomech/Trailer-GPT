@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+    @media (max-width: 768px) {
+      .hide-scrollbar {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+      }
+      .hide-scrollbar::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, and Opera */
+      }
+    }
+    @media (max-width: 450px) {
+        .rotate-container {
+          height: 100vw;
+          transform: rotate(90deg);
+          transform-origin: center center;
+        }
+        .rotate-iframe {
+            width: 100vh;
+            height: 100vw;
+          }
+        .phone-header {
+            width: 100vh;
+            height: 100vw;
+          }
+      }
+  }

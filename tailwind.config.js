@@ -17,9 +17,17 @@ module.exports = {
           },
         },
       },
+      screens: {
+        'xs': '150px',
+        'sm': '480px',
+        'lg': '1024px',
+        'xl': '1280px',
+        'phone': {'max': '450px'},
+      },
       animation: {
         'spinner-grow': 'spinner-grow 0.75s linear infinite',
       },
+      
     },
   },
   plugins: [
