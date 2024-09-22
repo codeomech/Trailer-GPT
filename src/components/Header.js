@@ -4,13 +4,20 @@ import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { addUser, removeUser } from "../utils/userSlice";
-import { mainLogo } from "../utils/constants";
+import logo from "../logo.svg";
 import { toggleGptSearchView } from "../utils/gptSlice";
 
 // drop down
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
-import { ChevronDownIcon,LanguageIcon, SpeakerWaveIcon,SpeakerXMarkIcon,MagnifyingGlassIcon, HomeIcon} from "@heroicons/react/20/solid";
+import {
+  ChevronDownIcon,
+  LanguageIcon,
+  SpeakerWaveIcon,
+  SpeakerXMarkIcon,
+  MagnifyingGlassIcon,
+  HomeIcon,
+} from "@heroicons/react/20/solid";
 import { useLanguage } from "./LanguageContext";
 import { toggleMute } from "../utils/audioSlice";
 
@@ -24,11 +31,9 @@ const Header = () => {
   const dispatch = useDispatch();
   const { toggleLanguage } = useLanguage();
 
-
-const handleToggle = () => {
+  const handleToggle = () => {
     signOut(auth)
-      .then(() => {
-      })
+      .then(() => {})
       .catch((error) => {
         navigate("/error");
       });
@@ -47,6 +52,7 @@ const handleToggle = () => {
             photoURL: photoURL,
           })
         );
+        navigate("/browse");
       } else {
         dispatch(removeUser());
         navigate("/");
@@ -62,45 +68,66 @@ const handleToggle = () => {
     dispatch(toggleGptSearchView());
   };
   // mute toggle
-  const isMuted = useSelector((state) => state.audio.isMuted); 
-  const toggleSound= () =>{
+  const isMuted = useSelector((state) => state.audio.isMuted);
+  const toggleSound = () => {
     dispatch(toggleMute());
-  }
+  };
 
   const handleLogoClick = () => {
-    navigate('/browse');
+    navigate("/browse");
   };
 
   const gpt = useSelector((store) => store.gpt.showGptSearch);
   return (
     <div className="md:w-full w-screen absolute md:px-10 px-5 py-5 bg-gradient-to-b from-black z-20 flex justify-between">
-      <img className="md:w-44 w-28 cursor-pointer" src={mainLogo} onClick={handleLogoClick} alt="logo" />
+      <img
+        className="w-16 lg:w-28 cursor-pointer"
+        src={logo}
+        onClick={handleLogoClick}
+        alt="logo"
+      />
       {user && (
         <div className="flex items-center">
-<div className="flex space-x-4 mr-5">
-  { !gpt ? (
-    <button onClick={handleGptSearchClick}>
-    <MagnifyingGlassIcon className="h-5 w-5 text-gray-400 hover:text-red-600" aria-hidden="true" />
-  </button>): (
-    <button onClick={handleGptSearchClick}>
-    <HomeIcon className="h-5 w-5 text-gray-400 hover:text-red-600" aria-hidden="true" />
-  </button>)
- }
+          <div className="flex space-x-4 mr-5">
+            {!gpt ? (
+              <button onClick={handleGptSearchClick}>
+                <MagnifyingGlassIcon
+                  className="h-5 w-5 text-gray-400 hover:text-red-600"
+                  aria-hidden="true"
+                />
+              </button>
+            ) : (
+              <button onClick={handleGptSearchClick}>
+                <HomeIcon
+                  className="h-5 w-5 text-gray-400 hover:text-red-600"
+                  aria-hidden="true"
+                />
+              </button>
+            )}
 
-  {!gpt && (
-    <button onClick={toggleSound}>
-      {isMuted ? (
-        <SpeakerXMarkIcon className="h-5 w-5 text-gray-400 hover:text-red-600" aria-hidden="true" />
-      ) : (
-        <SpeakerWaveIcon className="h-5 w-5 text-gray-400 hover:text-red-600" aria-hidden="true" />
-      )}
-    </button>
-  )}
+            {!gpt && (
+              <button onClick={toggleSound}>
+                {isMuted ? (
+                  <SpeakerXMarkIcon
+                    className="h-5 w-5 text-gray-400 hover:text-red-600"
+                    aria-hidden="true"
+                  />
+                ) : (
+                  <SpeakerWaveIcon
+                    className="h-5 w-5 text-gray-400 hover:text-red-600"
+                    aria-hidden="true"
+                  />
+                )}
+              </button>
+            )}
 
-  <button onClick={toggleLanguage}>
-    <LanguageIcon className="h-5 w-5 text-gray-400 hover:text-red-600" aria-hidden="true" />
-  </button>
-</div>
+            <button onClick={toggleLanguage}>
+              <LanguageIcon
+                className="h-5 w-5 text-gray-400 hover:text-red-600"
+                aria-hidden="true"
+              />
+            </button>
+          </div>
 
           <img
             src={
@@ -111,8 +138,6 @@ const handleToggle = () => {
             alt="userIcon"
             className="w-8 md:w-11 md:h-11 rounded-md data-dropdown-toggle=dropdownAvatar focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
           />
-         
-
 
           <Menu as="div" className="relative inline-block text-left">
             <div>
@@ -138,32 +163,30 @@ const handleToggle = () => {
                 <div className="py-1">
                   <Menu.Item>
                     {({ active }) => (
-                      <button onClick={handleToggle} className={classNames(
-                        active
-                          ? "bg-gray-100 text-gray-900"
-                          : "text-white",
-                        "block px-4 py-2 text-sm w-full text-left"
-                      )}>
-                      SignOut
-                    </button>
+                      <button
+                        onClick={handleToggle}
+                        className={classNames(
+                          active ? "bg-gray-100 text-gray-900" : "text-white",
+                          "block px-4 py-2 text-sm w-full text-left"
+                        )}
+                      >
+                        SignOut
+                      </button>
                     )}
                   </Menu.Item>
                   <Menu.Item>
                     {({ active }) => (
                       <button
-                      onClick={handleGptSearchClick}
-                      className={classNames(
-                        active
-                          ? "bg-gray-100 text-gray-900"
-                          : "text-white",
-                        "block px-4 py-2 text-sm w-full text-left"
-                      )}
-                    >
-                      {gpt ? "Homepage" : "GPT Search"}
-                    </button>
+                        onClick={handleGptSearchClick}
+                        className={classNames(
+                          active ? "bg-gray-100 text-gray-900" : "text-white",
+                          "block px-4 py-2 text-sm w-full text-left"
+                        )}
+                      >
+                        {gpt ? "Homepage" : "GPT Search"}
+                      </button>
                     )}
                   </Menu.Item>
-                  
                 </div>
               </Menu.Items>
             </Transition>
